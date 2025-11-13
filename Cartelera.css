@@ -182,7 +182,7 @@ footer {
 
 /*Animación*/
 
-@media (min-width: 76px) {
+@media (min-width: 769px) {
 
 film:hover {
     flex-basis: 45%;
