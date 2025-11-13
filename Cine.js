@@ -19,7 +19,7 @@ function configurarNavegacion() {
 
     if (cineQuintoLink) {
         cineQuintoLink.addEventListener('click', () => {
-            window.location.href = 'CineQuinto.html';
+            window.location.href = 'index.html';
         });
         cineQuintoLink.style.cursor = 'pointer'; 
     }
