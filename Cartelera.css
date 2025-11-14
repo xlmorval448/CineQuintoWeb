@@ -78,7 +78,7 @@ header .enlace-activo {
     top: 0.5%;
     right: 0.5%;
     z-index: 6;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 0, 0);
     font-size: 300%;
     padding: 5px 10px;
     cursor: pointer;
@@ -157,7 +157,6 @@ footer {
     margin-top: 5vh;
     background-color: #000000;
     border-top: 3px solid #ffffff;
-    font-family: 'Fira Sans', sans-serif;
     font-size: 0.8em;
 }
 
@@ -184,7 +183,7 @@ footer {
 
 @media (min-width: 769px) {
 
-film:hover {
+.film:hover {
     flex-basis: 45%;
     display: grid;
     grid-template-columns: 4fr 5fr;
@@ -213,6 +212,12 @@ film:hover {
     grid-row: 1 / span 2;
 }
 
+#rs i:hover {
+    color: gold;
+    transform: scale(1.1) rotate(5deg);
+}
+}
+
 .film:hover .informacion {
     text-align: left;
     height: 100%;
@@ -222,12 +227,6 @@ film:hover {
     padding: 30px;
     font-family: 'Fira Sans', sans-serif;
     font-size: 0.8em;
-}
-
-#rs i:hover {
-    color: gold;
-    transform: scale(1.1) rotate(5deg);
-}
 }
 
 @media (max-width: 768px) {
