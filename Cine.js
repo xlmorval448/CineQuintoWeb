@@ -1,6 +1,7 @@
 function configurarNavegacion() {
     const cineQuintoLink = document.getElementById('CineQuinto');
     const carteleraLink = document.getElementById('Cartelera');
+    const formularioLink = document.getElementById('Formulario'); 
 
     if (cineQuintoLink) {
         cineQuintoLink.addEventListener('click', () => {
@@ -8,12 +9,19 @@ function configurarNavegacion() {
         });
         cineQuintoLink.style.cursor = 'pointer';
     }
-
+    
     if (carteleraLink) {
         carteleraLink.addEventListener('click', () => {
             window.location.href = 'Cartelera.html';
         });
         carteleraLink.style.cursor = 'pointer';
+    }
+    
+    if (formularioLink) {
+        formularioLink.addEventListener('click', () => {
+            window.location.href = 'Formulario.html';
+        });
+        formularioLink.style.cursor = 'pointer';
     }
 }
 
@@ -52,29 +60,33 @@ function VisibilidadMapa() {
 }
 
 function resaltarEnlaceActual() {
-    const rutaActual = window.location.pathname.split('/').pop();
+    let rutaActual = window.location.pathname.split('/').pop();
 
     const enlaces = {
-        'index.html': 'CineQuinto',   
-        'Cartelera.html': 'Cartelera', 
+        'index.html': 'CineQuinto',
+        'Cartelera.html': 'Cartelera',
+        'Formulario.html': 'Formulario',
     };
 
     let idResaltar = null;
 
-    if (enlaces[rutaActual]) {
-        idResaltar = enlaces[rutaActual];
-    } 
-    else if (rutaActual === '') {
-        idResaltar = 'CineQuinto'; 
+    if (rutaActual === '' || rutaActual === 'index.html') {
+        idResaltar = enlaces['index.html'];
+    } else {
+        if (enlaces[rutaActual]) {
+            idResaltar = enlaces[rutaActual];
+        }
     }
 
     if (idResaltar) {
         const elemento = document.getElementById(idResaltar);
         if (elemento) {
-            elemento.classList.add('enlace-activo'); 
+            elemento.classList.add('enlace-activo');
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', resaltarEnlaceActual);
 
 window.addEventListener('load', () => {
     configurarNavegacion();

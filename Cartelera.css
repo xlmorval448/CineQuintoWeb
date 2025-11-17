@@ -227,6 +227,7 @@ footer {
     padding: 30px;
     font-family: 'Fira Sans', sans-serif;
     font-size: 0.8em;
+    scrollbar-width: none;
 }
 
 @media (max-width: 768px) {
