@@ -86,22 +86,100 @@ header .enlace-activo {
 }
 
 #carousel {
-    position: relative;
     height: 70vh;
     width: calc(100vw - 4vw);
-    border: 2px solid white;
+    margin: 0 auto;
     margin-top: 5vh;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 5vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    transition: all 500ms ease-in-out;
+}
+
+#carousel:has(.left:hover) {
+    grid-template-columns: 2.5fr 0.5fr 0.5fr;
+}
+
+#carousel:has(.center:hover) {
+    grid-template-columns: 0.5fr 2.5fr 0.5fr;
+}
+
+#carousel:has(.right:hover) {
+    grid-template-columns: 0.5fr 0.5fr 2.5fr;
+}
+
+:where(.left) {
     background-image: url(KNY.webp);
+}
+
+:where(.center) {
+    background-image: url(chainsawman.jpg);
+}
+
+:where(.right) {
+    background-image: url(jujutsukaisen-ejecucion.jpg);
+}
+
+:where(.left, .center, .right) {
+    border: 2px solid white;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 300ms;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     text-align: center;
-    border-radius: 15px;
+    min-width: 0;
+}
+
+.left h1,
+.center h1,
+.right h1 {
+    grid-column: 2 / 3;
+    justify-self: center;
+    align-self: end;
+    font-size: 5vh;
+    margin-bottom: 0;
+    position: relative;
+    text-shadow: 2px 2px 5px black;
+    white-space: nowrap;
+}
+
+.left #stars,
+.center #stars,
+.right #stars {
+    color: gold;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.left #subtitle,
+.center #subtitle,
+.right #subtitle {
+    grid-column: 2 / 3;
+    justify-self: center;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: opacity 0.3s;
+}
+
+.left .button,
+.center .button,
+.right .button {
+    margin: 10px;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #trailer {
@@ -127,44 +205,6 @@ header .enlace-activo {
     display: none;
 }
 
-#carousel h1 {
-    grid-column: 2 / 3;
-    justify-self: center;
-    align-self: end;
-    font-size: 7vh;
-    margin-bottom: 0;
-    position: relative;
-    text-shadow: 2px 2px 5px black;
-}
-
-#carousel #stars {
-    color: gold;
-    font-size: 20px;
-    margin: 10px;
-}
-
-#carousel #subtitle {
-    grid-column: 2 / 3;
-    justify-self: center;
-    align-self: start;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-#carousel #subtitle h3 {
-    margin: 5px 0;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px black;
-}
-
-#carousel .button {
-    margin: 10px;
-    background-color: red;
-    color: white;
-}
-
 #tp {
     color: white;
     align-self: center;
@@ -174,49 +214,86 @@ header .enlace-activo {
 }
 
 #cards {
-    display: flex;
-    height: 65vh;
-    justify-content: space-evenly;
-    width: calc(100vw - 3vw);
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 90vh;
+    width: calc(100vw - 15vw);
+    margin: 20px auto;
+    gap: 20px;
 }
 
 .film {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 18%;
-    text-align: center;
-    align-items: center;
+    position: relative;
     border-radius: 10px;
-    background-color: black;
     border: 3px solid #ffffff;
-    color: #ffffff;
-    justify-content: space-between;
-
-    transition: flex-basis 0.3s ease-out,
-        transform 0.3s ease-out,
-        box-shadow 0.3s ease-out,
-        border 0.3s ease-out;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background-color: black;
 }
 
 .film .hero {
-    flex-basis: 85%;
-    width: 100%;
-    margin: 0;
-    overflow: hidden;
-}
-
-.film img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+}
+
+.film .hero img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.film:hover .hero img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.film::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .film h3 {
-    margin-left: 20px;
-    margin-right: 20px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    z-index: 2;
+    transition: all 0.4s ease-out;
+    text-shadow: 2px 2px 4px black;
+}
+
+.film h3:nth-of-type(1) {
+    bottom: 30px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.film h3:nth-of-type(2) {
+    bottom: -50px;
+    font-size: 1rem;
+    color: #ccc;
+    opacity: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.film:hover h3:nth-of-type(1) {
+    bottom: 60px;
+}
+
+.film:hover h3:nth-of-type(2) {
+    bottom: 25px;
+    opacity: 1;
 }
 
 footer {
@@ -250,25 +327,6 @@ footer {
     transition: color 0.3s ease-out, transform 0.3s ease-out;
 }
 
-/*Animación*/
-@media (min-width: 769px) {
-    .film:hover {
-        box-shadow:
-            0 0 40px rgba(255, 215, 0, 0.95),
-            0 0 80px rgba(255, 215, 0, 0.8),
-            0 0 120px rgba(255, 215, 0, 0.6),
-            0 0 200px rgba(255, 215, 0, 0.4);
-        border: 3px solid #DC143C;
-        transform: scale(1.1);
-    }
-
-    #rs i:hover {
-        color: gold;
-        transform: scale(1.1) rotate(5deg);
-    }
-}
-
-
 /*RESPONSIVE*/
 
 @media (max-width: 768px) {
@@ -290,7 +348,7 @@ footer {
         margin: 0;
     }
 
-    #carousel {
+    .carousel {
         height: 90vh;
     }
 
